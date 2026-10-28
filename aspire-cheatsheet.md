@@ -8,10 +8,13 @@ Aspire is not your web framework, database, or production cloud. Your services s
 
 ```text
 AppHost (describes and starts the application)
-  ├── Web frontend ──references──> API
-  └── API ──references──> Redis
-         │
-         └── Aspire dashboard: status, endpoints, logs, traces, metrics
+  ├── Starts DB 
+  ├── Makes sure DB is running then Starts REDIS
+  ├── Makes sure REDIS and DB are running and starts WEB API 
+  │   └── passes DB and REDIS connection information to WEB API
+  ├── Makes sure WEB API is running and then starts Web frontend
+  │   └── passes WEB API connection information to Web frontend
+  └── Aspire dashboard: status, endpoints, logs, traces, metrics
 ```
 
 ## 1. The important terms
